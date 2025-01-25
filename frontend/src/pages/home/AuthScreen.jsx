@@ -23,9 +23,9 @@ const AuthScreen = () => {
 
 			{/* hero section */}
 			<div className='flex flex-col items-center justify-center text-center py-40 text-white max-w-6xl mx-auto'>
-				<h1 className='text-4xl md:text-6xl font-bold mb-4'>Unlimited movies, TV shows, and more</h1>
-				<p className='text-lg mb-4'>Watch anywhere. Cancel anytime.</p>
-				<p className='mb-4'>Ready to watch? Enter your email to create or restart your membership.</p>
+				<h1 className='text-4xl md:text-6xl font-bold mb-4'>Welcome to the Buzzolute Plus system!</h1>
+				<p className='text-lg mb-4'>Buzzolute Plus is an e-learning platform that allows you to study anytime, anywhere.</p>
+				<p className='mb-4'>If you're ready, you can start learning right away via your email.</p>
 
 				<form className='flex flex-col md:flex-row gap-4 w-1/2' onSubmit={handleFormSubmit}>
 					<input
@@ -50,9 +50,9 @@ const AuthScreen = () => {
 				<div className='flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2'>
 					{/* left side */}
 					<div className='flex-1 text-center md:text-left'>
-						<h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Enjoy on your TV</h2>
+						<h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Enjoy on your Links</h2>
 						<p className='text-lg md:text-xl'>
-							Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.
+							There are countless success stories to learn from, including the mindset of successful individuals.
 						</p>
 					</div>
 					{/* right side */}
@@ -106,7 +106,7 @@ const AuthScreen = () => {
 							Download your shows to watch offline
 						</h2>
 						<p className='text-lg md:text-xl'>
-							Save your favorites easily and always have something to watch.
+							Convenient learning that helps you focus more on your business.
 						</p>
 					</div>
 				</div>
@@ -123,7 +123,7 @@ const AuthScreen = () => {
 					<div className='flex-1 text-center md:text-left'>
 						<h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Watch everywhere</h2>
 						<p className='text-lg md:text-xl'>
-							Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.
+							Listen to unlimited links on your phone, tablet, laptop, and TV.
 						</p>
 					</div>
 
@@ -160,10 +160,9 @@ const AuthScreen = () => {
 					</div>
 					{/* right */}
 					<div className='flex-1 text-center md:text-left'>
-						<h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Create profiles for kids</h2>
+						<h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Expanding Your Business Worldwide</h2>
 						<p className='text-lg md:text-xl'>
-							Send kids on adventures with their favorite characters in a space made just for them—free
-							with your membership.
+							Knowledge is not just what you learn, but what you apply to create change.
 						</p>
 					</div>
 				</div>
