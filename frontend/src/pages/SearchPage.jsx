@@ -45,7 +45,7 @@ const SearchPage = () => {
 						} hover:bg-red-700`}
 						onClick={() => handleTabClick("movie")}
 					>
-						Movies
+						Links
 					</button>
 					<button
 						className={`py-2 px-4 rounded ${
@@ -53,7 +53,7 @@ const SearchPage = () => {
 						} hover:bg-red-700`}
 						onClick={() => handleTabClick("tv")}
 					>
-						TV Shows
+						Buzz Pack
 					</button>
 					<button
 						className={`py-2 px-4 rounded ${
