@@ -5,20 +5,20 @@ const Footer = () => {
 				<p className='text-balance text-center text-sm leading-loose text-muted-foreground md:text-left'>
 					Built by{" "}
 					<a
-						href='https://github.com/burakorkmez'
+						href='https://www.instagram.com/k.kimtoki/'
 						target='_blank'
 						className='font-medium underline underline-offset-4'
 					>
-						you
+						kimtoki
 					</a>
-					. The source code is available on{" "}
+					. Recommended books{" "}
 					<a
-						href='https://github.com/burakorkmez'
+						href='https://www.hytexts.com/ebook/3fb6b2f3-7056-46ac-bbb2-1ee18403f66f'
 						target='_blank'
 						rel='noreferrer'
 						className='font-medium underline underline-offset-4'
 					>
-						GitHub
+						ฝันที่เป็นจริงได้
 					</a>
 					.
 				</p>
