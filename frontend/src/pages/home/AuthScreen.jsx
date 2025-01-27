@@ -90,8 +90,8 @@ const AuthScreen = () => {
 								<img src='/stranger-things-sm.png' alt='image' className='h-full' />
 								<div className=' flex justify-between items-center w-full'>
 									<div className='flex flex-col gap-0'>
-										<span className='text-md lg:text-lg font-bold'>Stranger Things</span>
-										<span className='text-sm text-blue-500'>Downloading...</span>
+										<span className='text-md lg:text-lg font-bold'>founder crown ambassador</span>
+										<span className='text-sm text-blue-500'>First Circle</span>
 									</div>
 
 									<img src='/download-icon.gif' alt='' className='h-12' />
@@ -103,7 +103,7 @@ const AuthScreen = () => {
 
 					<div className='flex-1 md:text-left text-center'>
 						<h2 className='text-4xl md:text-5xl font-extrabold mb-4 text-balance'>
-							Download your shows to watch offline
+							Understanding the Founder's Philosophy
 						</h2>
 						<p className='text-lg md:text-xl'>
 							Convenient learning that helps you focus more on your business.
@@ -171,3 +171,4 @@ const AuthScreen = () => {
 	);
 };
 export default AuthScreen;
+
