@@ -10,7 +10,7 @@ const WatchPage = () => {
     const { id: videoId } = useParams();
     const [video, setVideo] = useState(null);
     const [loading, setLoading] = useState(true);
-    const API_KEY = "YOUR_YOUTUBE_API_KEY"; // เปลี่ยนเป็น API Key ของคุณ
+    const API_KEY = "AIzaSyAeG5TMdMqdZbJWx_mOBrTnqk_TVFpwSfw"; // เปลี่ยนเป็น API Key ของคุณ
 
     useEffect(() => {
         const fetchVideo = async () => {
