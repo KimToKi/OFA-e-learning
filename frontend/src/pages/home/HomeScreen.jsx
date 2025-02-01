@@ -5,9 +5,6 @@ import useGetTrendingContent from "../../hooks/useGetTrendingContent";
 import { ORIGINAL_IMG_BASE_URL } from "../..untils/constants";
 import { useState, useEffect } from "react"; 
 
-const HomeScreen = () => {
-    const { trendingContent } = useGetTrendingContent();
-    console.log("trendingContent", trendingContent);
     
 const videos = [
     {
