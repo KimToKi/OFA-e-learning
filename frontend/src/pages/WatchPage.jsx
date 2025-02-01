@@ -16,7 +16,7 @@ const WatchPage = () => {
       try {
         // ตัวอย่างการดึงข้อมูลวิดีโอจาก YouTube API
         const res = await axios.get(
-          `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=AIzaSyAeG5TMdMqdZbJWx_mOBrTnqk_TVFpwSfw`
+          `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=AIzaSyDdTi1c8Ux71c--T7scToS4mD9RVBa-QPY`
         );
         setVideoInfo(res.data.items[0].snippet);
       } catch (error) {
