@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { Info, Play } from "lucide-react";
+import useGetTrendingContent from "../../hooks/useGetTrendingContent";
+import { ORIGINAL_IMG_BASE_URL } from "../..untils/constants";
 import { useState, useEffect } from "react"; 
 
+const HomeScreen = () => {
+    const { trendingContent } = useGetTrendingContent();
+    console.log("trendingContent", trendingContent);
+    
 const videos = [
     {
         id: "wdsc_QfFL2E", // videoId จากลิงก์ YouTube
@@ -187,7 +193,9 @@ const HomeScreen = () => {
                     />
 
                     <div className="max-w-2xl">
-                        <h1 className="mt-4 text-6xl font-extrabold text-balance">{trendingVideo.snippet.title}</h1>
+                        <h1 className="mt-4 text-6xl font-extrabold text-balance">
+                            {trendingContent?.title || trendingContent?.name}
+                        </h1>
                         <p className="mt-2 text-lg">
                             {new Date(trendingVideo.snippet.publishedAt).toLocaleDateString()}
                         </p>
@@ -201,7 +209,7 @@ const HomeScreen = () => {
 
                     <div className="flex mt-8">
                         <Link
-                            to={`/watch/${trendingVideo.id}`}
+                            to={`/watch/${trendingContent?.id}`}
                             className="bg-white hover:bg-white/80 text-black font-bold py-2 px-4 rounded mr-4 flex items-center"
                         >
                             <Play className="size-6 mr-2 fill-black" />
@@ -209,7 +217,7 @@ const HomeScreen = () => {
                         </Link>
 
                         <Link
-                            to={`/watch/${trendingVideo.id}`}
+                            to={`/watch/${trendingContent?.id}`}
                             className="bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded flex items-center"
                         >
                             <Info className="size-6 mr-2" />
