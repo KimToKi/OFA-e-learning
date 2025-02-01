@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from '../../components/Navbar';
 import HeroSection from '../../components/HeroSection';
 import VideoCard from '../../components/VideoCard';
-import videosData from '../src/data/videosData.js';// นำเข้าข้อมูลวิดีโอ
+import videosData from '../data/videosData.js';// นำเข้าข้อมูลวิดีโอ
 
 const HomeScreen = () => {
     const [trendingVideo, setTrendingVideo] = useState(videos[0]);
