@@ -9,7 +9,6 @@ const videosPerPage = 6;
 const indexOfLastVideo = currentPage * videosPerPage;
 const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
 const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
-
 const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 <iframe
@@ -21,14 +20,6 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
   allowFullScreen
 />
 
-const [videos, setVideos] = useState([]);
-
-useEffect(() => {
-  fetch("https://api.example.com/videos")
-    .then((response) => response.json())
-    .then((data) => setVideos(data))
-    .catch((error) => console.error("Error fetching videos:", error));
-}, []);
 
 const videos = [
     {
