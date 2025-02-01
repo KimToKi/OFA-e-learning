@@ -218,28 +218,6 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="flex flex-col gap-10 bg-black py-10">
-                {/* แสดงวิดีโออื่นๆ */}
-                {videos.map((video) => (
-                    <div key={video.id} className="max-w-2xl mx-auto">
-                        <h2 className="text-2xl font-bold">{video.snippet.title}</h2>
-                        <img
-                            src={video.snippet.thumbnails.high.url}
-                            alt={video.snippet.title}
-                            className="w-full h-auto rounded-md"
-                        />
-                        <p className="mt-2 text-lg">{video.snippet.description}</p>
-                        <Link
-                            to={`/watch/${video.id}`}
-                            className="bg-white hover:bg-white/80 text-black font-bold py-2 px-4 rounded mt-4 inline-block"
-                        >
-                            <Play className="size-6 mr-2 fill-black" />
-                            Play
-                        </Link>
-                    </div>
-                ))}
-            </div>
         </>
     );
 };
