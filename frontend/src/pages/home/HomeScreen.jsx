@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from '../../components/Navbar';
 import HeroSection from '../../components/HeroSection';
-import VideoCard from "../components/VideoCard";
 import VideoCard from '../../components/VideoCard';// นำเข้าข้อมูลวิดีโอ
 
 const HomeScreen = () => {
