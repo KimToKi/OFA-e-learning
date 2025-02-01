@@ -11,7 +11,7 @@ const WatchPage = () => {
                 controls={true}
                 width={"100%"}
                 height={"70vh"}
-                url={`https://www.youtube.com/watch?v=${wdsc_QfFL2E}`}
+                url={`https://www.youtube.com/watch?v=${videoId}`}
             />
         </div>
     );
