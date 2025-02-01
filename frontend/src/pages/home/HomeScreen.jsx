@@ -20,8 +20,8 @@ const videos = [
     {
         id: "Ao0jHRFS-Is", // videoId จากลิงก์ YouTube
         snippet: {
-            title: "Future Leader Club #1 “การตัดสินใจ และการตั้งเป้าหมาย”",
-            description: "กิจกรรม BATCH 1 วันที่ 24 เมษายน 2562 บรรยายโดย คุณเชวง คุณชยางกูร - คุณกัญญ์นลิน ปิยนันทวารินทร์  นักธุรกิจแอมเวย์ระดับมงกุฎทูต",
+            title: "Future Leader Club #1",
+            description: "“การตัดสินใจ และการตั้งเป้าหมาย” กิจกรรม BATCH 1 วันที่ 24 เมษายน 2562 บรรยายโดย คุณเชวง คุณชยางกูร - คุณกัญญ์นลิน ปิยนันทวารินทร์  นักธุรกิจแอมเวย์ระดับมงกุฎทูต",
             thumbnails: {
                 high: {
                     url: "https://i.ytimg.com/vi/Ao0jHRFS-Is/hqdefault.jpg", // ภาพ thumbnail จาก videoId
@@ -46,7 +46,7 @@ const videos = [
     {
         id: "8akYALb-lOU", // videoId จากลิงก์ YouTube
         snippet: {
-            title: "งานรับเข็มมงกุฏทูต : คุณแป๊ก พฤสณัย มหัคฆพงศ์ - คุณจอยซ์ รมัณยา จูฑะเตมีย์",
+            title: "งานรับเข็มมงกุฏทูต : คุณแป๊ก คุณจอยซ์ ",
             description: "แป๊ก พฤสณัย มหัคฆพงศ์ - จอยซ์ รมัณยา จูฑะเตมีย์ มงกุฏทูต, สิงหาคม 2556 Diamond, USA คนแรกของ South East Asia",
             thumbnails: {
                 high: {
@@ -59,8 +59,8 @@ const videos = [
     {
         id: "iqfU3nrAYHc", // videoId จากลิงก์ YouTube
         snippet: {
-            title: "นักธุรกิจแอมเวย์ ระดับตรีเพชร รัฐธีร์ มังคลรังษี - นิยุตรัตน์ จามพันธ์",
-            description: "จุดสูงสุดของชีวิต มิใช่เป็นผู้ปกครอง หากแต่คือผู้รับใช้",
+            title: "นักธุรกิจแอมเวย์ ระดับตรีเพชร รัฐธีร์ - นิยุตรัตน์",
+            description: "รัฐธีร์ มังคลรังษี - นิยุตรัตน์ จามพันธ์ จุดสูงสุดของชีวิต มิใช่เป็นผู้ปกครอง หากแต่คือผู้รับใช้",
             thumbnails: {
                 high: {
                     url: "https://i.ytimg.com/vi/iqfU3nrAYHc/hqdefault.jpg", // ภาพ thumbnail จาก videoId
@@ -72,7 +72,7 @@ const videos = [
     {
         id: "MbKyfV4-rl0", // videoId จากลิงก์ YouTube
         snippet: {
-            title: "พิธีมอบเข็มเกียรติคุณ นธอ .ระดับเพชรคู่สองผู้สถาปนาใหม่ คุณพงศชา เบ็ญจพรกุลพงศ์ - คุณพิชญา มานะธัญญา",
+            title: "พิธีมอบเข็มเกียรติคุณ ระดับเพชรคู่สองผู้สถาปนาใหม่",
             description: "รับฟังประสบการณ์ความสำเร็จในพิธีมอบเข็มเกียรติคุณนักธุรกิจแอมเวย์ระดับเพชรคู่สองผู้สถาปนาใหม่ คุณพงศชา เบ็ญจพรกุลพงศ์ - คุณพิชญา มานะธัญญา เจ้าของแนวคิดความสำเร็จ : “ให้ความสำคัญกับสิ่งไหน สิ่งนั้นจะเติบโต” ",
             thumbnails: {
                 high: {
@@ -85,8 +85,8 @@ const videos = [
     {
         id: "oyACCrjoG-s", // videoId จากลิงก์ YouTube
         snippet: {
-            title: "EDC Recognition ชลธีร์ แก้วมณีสกุล รัตนพร วชิรบัญชร",
-            description: "-",
+            title: "EDC Recognition พี่หนึ่ง พี่ดื้อ",
+            description: "ชลธีร์ แก้วมณีสกุล รัตนพร วชิรบัญชร",
             thumbnails: {
                 high: {
                     url: "https://i.ytimg.com/vi/oyACCrjoG-s/hqdefault.jpg", // ภาพ thumbnail จาก videoId
@@ -137,7 +137,7 @@ const videos = [
     {
         id: "xhxGYOLHmQU", // videoId จากลิงก์ YouTube
         snippet: {
-            title: "Mr.Foo Howe Kean - Crador 2018 in Bangkok (ภาษาไทย)",
+            title: "Crador 2018 in Bangkok (ภาษาไทย)",
             description: "Speech by Mr.Foo Howe Kean - Crador 2018 in Bangkok (ภาษาไทย) Crador 40th Anniversary : The Great Phenomenon 13-14 October 2018 , Bangkok Thailand",
             thumbnails: {
                 high: {
