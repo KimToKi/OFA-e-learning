@@ -13,6 +13,9 @@ import SearchHistoryPage from "./pages/SearchHistoryPage";
 import NotFoundPage from "./pages/404";
 import RouteGuards from './RouteGuards';
 import ErrorBoundary from "./components/ErrorBoundary";
+import PublicRoute from "./routes/PublicRoute";
+import PrivateRoute from "./routes/PrivateRoute";
+
 
 function App() {
   const { user, isCheckingAuth, authCheck } = useAuthStore();
