@@ -72,7 +72,7 @@ const videos = [
     {
         id: "MbKyfV4-rl0", // videoId จากลิงก์ YouTube
         snippet: {
-            title: "พิธีมอบเข็มเกียรติคุณ ระดับเพชรคู่สองผู้สถาปนาใหม่",
+            title: "พิธีมอบเข็ม ระดับเพชรคู่สองผู้สถาปนา",
             description: "รับฟังประสบการณ์ความสำเร็จในพิธีมอบเข็มเกียรติคุณนักธุรกิจแอมเวย์ระดับเพชรคู่สองผู้สถาปนาใหม่ คุณพงศชา เบ็ญจพรกุลพงศ์ - คุณพิชญา มานะธัญญา เจ้าของแนวคิดความสำเร็จ : “ให้ความสำคัญกับสิ่งไหน สิ่งนั้นจะเติบโต” ",
             thumbnails: {
                 high: {
@@ -214,6 +214,29 @@ const HomeScreen = () => {
                         >
                             <Info className="size-6 mr-2" />
                             More Info
+                            {/* ส่วน "Trending Links" */}
+            <div className="bg-black py-10 px-8 md:px-16 lg:px-32">
+                <h2 className="text-3xl font-bold mb-6">Trending Links</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {videos.map((video) => (
+                        <div key={video.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                            <img
+                                src={video.snippet.thumbnails.high.url}
+                                alt={video.snippet.title}
+                                className="w-full h-48 object-cover"
+                            />
+                            <div className="p-4">
+                                <h3 className="text-xl font-semibold mb-2">{video.snippet.title}</h3>
+                                <p className="text-gray-300 mb-4">
+                                    {video.snippet.description.length > 100
+                                        ? video.snippet.description.slice(0, 100) + "..."
+                                        : video.snippet.description}
+                                </p>
+                                <Link
+                                    to={`/watch/${video.id}`}
+                                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block"
+                                >
+                                    Watch Now
                         </Link>
                     </div>
                 </div>
