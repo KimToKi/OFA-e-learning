@@ -17,4 +17,3 @@ router.get("/:category", getMoviesByCategory);
 
 
 export default router;
->>>>>>> d9f979e (อัปเดตไฟล์ movie.route.js)
