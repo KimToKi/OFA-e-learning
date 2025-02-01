@@ -3,7 +3,6 @@ import Navbar from "../../components/Navbar";
 import { Info, Play } from "lucide-react";
 import { useState, useEffect } from "react"; 
 
-    
 const videos = [
     {
         id: "wdsc_QfFL2E", // videoId จากลิงก์ YouTube
@@ -188,9 +187,7 @@ const HomeScreen = () => {
                     />
 
                     <div className="max-w-2xl">
-                        <h1 className="mt-4 text-6xl font-extrabold text-balance">
-                            {trendingVideo.title || trendingVideo.name}
-                        </h1>
+                        <h1 className="mt-4 text-6xl font-extrabold text-balance">{trendingVideo.snippet.title}</h1>
                         <p className="mt-2 text-lg">
                             {new Date(trendingVideo.snippet.publishedAt).toLocaleDateString()}
                         </p>
@@ -204,7 +201,7 @@ const HomeScreen = () => {
 
                     <div className="flex mt-8">
                         <Link
-                            to={`/watch/${trendingContent?.id}`}
+                            to={`/watch/${trendingVideo.id}`}
                             className="bg-white hover:bg-white/80 text-black font-bold py-2 px-4 rounded mr-4 flex items-center"
                         >
                             <Play className="size-6 mr-2 fill-black" />
@@ -212,17 +209,12 @@ const HomeScreen = () => {
                         </Link>
 
                         <Link
-                            to={`/watch/${trendingContent?.id}`}
+                            to={`/watch/${trendingVideo.id}`}
                             className="bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded flex items-center"
                         >
                             <Info className="size-6 mr-2" />
                             More Info
-                        </Link>
-                    </div>
-                </div>
-            </div>
-
-            {/* ส่วน "Trending Links" */}
+                            {/* ส่วน "Trending Links" */}
             <div className="bg-black py-10 px-8 md:px-16 lg:px-32">
                 <h2 className="text-3xl font-bold mb-6">Trending Links</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -245,10 +237,8 @@ const HomeScreen = () => {
                                     className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block"
                                 >
                                     Watch Now
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
+                        </Link>
+                    </div>
                 </div>
             </div>
         </>
