@@ -214,7 +214,12 @@ const HomeScreen = () => {
                         >
                             <Info className="size-6 mr-2" />
                             More Info
-                            {/* ส่วน "Trending Links" */}
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* ส่วน "Trending Links" */}
             <div className="bg-black py-10 px-8 md:px-16 lg:px-32">
                 <h2 className="text-3xl font-bold mb-6">Trending Links</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -237,8 +242,10 @@ const HomeScreen = () => {
                                     className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block"
                                 >
                                     Watch Now
-                        </Link>
-                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </>
