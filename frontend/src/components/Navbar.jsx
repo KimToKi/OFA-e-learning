@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { LogOut, Menu, Search } from "lucide-react";
 import { useAuthStore } from "../store/authUser";
 import { useContentStore } from "../store/content";
-import netflixLogo from '../assets/netflix-logo.png'; // อ้างอิงรูปภาพจากโฟลเดอร์ assets
 
 const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,16 +16,16 @@ const Navbar = () => {
 		<header className='max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20'>
 			<div className='flex items-center gap-10 z-50'>
 				<Link to='/'>
-					<img src={netflixLogo} alt='Netflix Logo' className='w-32 sm:w-40' />
+					<img src='/netflix-logo.png' alt='Netflix Logo' className='w-32 sm:w-40' />
 				</Link>
 
 				{/* desktop navbar items */}
 				<div className='hidden sm:flex gap-2 items-center'>
 					<Link to='/' className='hover:underline' onClick={() => setContentType("movie")}>
-						Links
+						Movies
 					</Link>
 					<Link to='/' className='hover:underline' onClick={() => setContentType("tv")}>
-						Buzz Pack
+						Tv Shows
 					</Link>
 					<Link to='/history' className='hover:underline'>
 						Search History
@@ -49,10 +48,10 @@ const Navbar = () => {
 			{isMobileMenuOpen && (
 				<div className='w-full sm:hidden mt-4 z-50 bg-black border rounded border-gray-800'>
 					<Link to={"/"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
-						Links
+						Movies
 					</Link>
 					<Link to={"/"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
-						Buzz Pack
+						Tv Shows
 					</Link>
 					<Link to={"/history"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
 						Search History
