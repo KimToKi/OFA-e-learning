@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from '../../components/Navbar';
-import HeroSection from "../components/HeroSection";
+import HeroSection from '../../components/HeroSection';
 import VideoCard from "../components/VideoCard";
 import { videos } from "../data/videosData"; // นำเข้าข้อมูลวิดีโอ
 
