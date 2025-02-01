@@ -1,88 +1,53 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import ReactPlayer from "react-player";
-import WatchPageSkeleton from "../components/skeletons/WatchPageSkeleton";
+import { useState, useEffect } from "react";
 
-const WatchPage = () => {
-  const { videoId } = useParams(); // ดึง videoId จาก URL
-  const [loading, setLoading] = useState(true);
-  const [videoInfo, setVideoInfo] = useState(null);
+const HomeScreen = () => {
+    const [videos, setVideos] = useState([]); // ใช้ useState เพื่อเก็บข้อมูลวิดีโอ
+    const [currentPage, setCurrentPage] = useState(1);
+    const videosPerPage = 6;
 
-  // ฟังก์ชันสำหรับดึงข้อมูลวิดีโอจาก YouTube
-  useEffect(() => {
-    const fetchVideoInfo = async () => {
-      try {
-        // ตัวอย่างการดึงข้อมูลวิดีโอจาก YouTube API
-        const res = await axios.get(
-          `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=AIzaSyDdTi1c8Ux71c--T7scToS4mD9RVBa-QPY`
-        );
-        setVideoInfo(res.data.items[0].snippet);
-      } catch (error) {
-        console.error("Error fetching video info:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    // ดึงข้อมูลวิดีโอจาก API
+    useEffect(() => {
+        fetch("https://api.example.com/videos")
+            .then((response) => response.json())
+            .then((data) => setVideos(data))
+            .catch((error) => console.error("Error fetching videos:", error));
+    }, []);
 
-    fetchVideoInfo();
-  }, [videoId]);
+    // คำนวณวิดีโอที่แสดงในหน้าปัจจุบัน
+    const indexOfLastVideo = currentPage * videosPerPage;
+    const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
+    const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
 
-  // แสดง loading state
-  if (loading) {
+    // ฟังก์ชันเปลี่ยนหน้า
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
-      <div className="min-h-screen bg-black p-10">
-        <WatchPageSkeleton />
-      </div>
+        <div>
+            {/* แสดงวิดีโอ */}
+            {currentVideos.map((video) => (
+                <div key={video.id}>
+                    <h2>{video.snippet.title}</h2>
+                    <iframe
+                        width="100%"
+                        height="300"
+                        src={`https://www.youtube.com/embed/${video.id}`} // แก้ไข URL ให้ถูกต้อง
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    />
+                </div>
+            ))}
+
+            {/* Pagination */}
+            <div>
+                {Array.from({ length: Math.ceil(videos.length / videosPerPage) }, (_, i) => (
+                    <button key={i + 1} onClick={() => paginate(i + 1)}>
+                        {i + 1}
+                    </button>
+                ))}
+            </div>
+        </div>
     );
-  }
-
-  // แสดงข้อความเมื่อไม่มีข้อมูลวิดีโอ
-  if (!videoInfo) {
-    return (
-      <div className="bg-black text-white h-screen">
-        <div className="max-w-6xl mx-auto">
-          <Navbar />
-          <div className="text-center mx-auto px-4 py-8 h-full mt-40">
-            <h2 className="text-2xl sm:text-5xl font-bold text-balance">Video not found 😥</h2>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="bg-black min-h-screen text-white">
-      <div className="mx-auto container px-4 py-8 h-full">
-        <Navbar />
-
-        {/* ส่วนแสดงวิดีโอ */}
-        <div className="aspect-video mb-8 p-2 sm:px-10 md:px-32">
-          <ReactPlayer
-            controls={true}
-            width={"100%"}
-            height={"70vh"}
-            className="mx-auto overflow-hidden rounded-lg"
-            url={`https://www.youtube.com/watch?v=${videoId}`}
-          />
-        </div>
-
-        {/* ส่วนแสดงข้อมูลวิดีโอ */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-20 max-w-6xl mx-auto">
-          <div className="mb-4 md:mb-0">
-            <h2 className="text-5xl font-bold text-balance">{videoInfo.title}</h2>
-            <p className="mt-4 text-lg">{videoInfo.description}</p>
-          </div>
-          <img
-            src={videoInfo.thumbnails.high.url}
-            alt="Video thumbnail"
-            className="max-h-[600px] rounded-md"
-          />
-        </div>
-      </div>
-    </div>
-  );
 };
 
-export default WatchPage;
+export default HomeScreen;
