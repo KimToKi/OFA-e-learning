@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Navbar from '../../components/Navbar';
 import HeroSection from '../../components/HeroSection';
-import VideoCard from '../../components/VideoCard';// นำเข้าข้อมูลวิดีโอ
+import VideoCard from '../../components/VideoCard';
+import { videos } from "../data/videosData"; // นำเข้าข้อมูลวิดีโอ
 
 const HomeScreen = () => {
     const [trendingVideo, setTrendingVideo] = useState(videos[0]);
