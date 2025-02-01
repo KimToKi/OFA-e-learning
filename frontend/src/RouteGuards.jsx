@@ -1,6 +1,15 @@
-const RouteGuards = ({ children }) => {
-    // ใส่ logic การป้องกัน route เช่น ตรวจสอบ auth
-    return children;
-};
+import { Navigate } from "react-router-dom";
 
-export default RouteGuards;
+export function PrivateRoute({ user, children }) {
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
+    return children;
+}
+
+export function PublicRoute({ user, children }) {
+    if (user) {
+        return <Navigate to="/" replace />;
+    }
+    return children;
+}
