@@ -1,13 +1,16 @@
-// backend/app.js
-import express from "express";
-import movieRouter from "./routes/movie.route.js";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomeScreen from "./pages/HomeScreen";
+import WatchPage from "./pages/WatchPage";
 
-const app = express();
+const App = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomeScreen />} />
+                <Route path="/watch/:videoId" element={<WatchPage />} /> {/* เพิ่ม route นี้ */}
+            </Routes>
+        </Router>
+    );
+};
 
-app.use(express.json());
-app.use("/api/movies", movieRouter);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+export default App;
