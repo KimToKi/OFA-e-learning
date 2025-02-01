@@ -22,10 +22,10 @@ const Navbar = () => {
 				{/* desktop navbar items */}
 				<div className='hidden sm:flex gap-2 items-center'>
 					<Link to='/' className='hover:underline' onClick={() => setContentType("movie")}>
-						Movies
+						Links
 					</Link>
 					<Link to='/' className='hover:underline' onClick={() => setContentType("tv")}>
-						Tv Shows
+						Packs
 					</Link>
 					<Link to='/history' className='hover:underline'>
 						Search History
@@ -48,10 +48,10 @@ const Navbar = () => {
 			{isMobileMenuOpen && (
 				<div className='w-full sm:hidden mt-4 z-50 bg-black border rounded border-gray-800'>
 					<Link to={"/"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
-						Movies
+						Links
 					</Link>
 					<Link to={"/"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
-						Tv Shows
+						Packs
 					</Link>
 					<Link to={"/history"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
 						Search History
