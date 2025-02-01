@@ -1,47 +1,57 @@
-import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const HomeScreen = () => {
-    const [videos, setVideos] = useState([]); // ใช้ useState เพื่อเก็บข้อมูลวิดีโอ
-    const [currentPage, setCurrentPage] = useState(1);
-    const videosPerPage = 6;
-    // ดึงข้อมูลวิดีโอจาก API
+const WatchPage = () => {
+    const { videoId } = useParams(); // ดึง videoId จาก URL
+    const [video, setVideo] = useState(null); // สถานะสำหรับเก็บข้อมูลวิดีโอ
+    const [loading, setLoading] = useState(true); // สถานะโหลด
+
+    // ฟังก์ชันดึงข้อมูลวิดีโอจาก API
     useEffect(() => {
-        fetch("https://api.example.com/videos")
-            .then((response) => response.json())
-            .then((data) => setVideos(data))
-            .catch((error) => console.error("Error fetching videos:", error));
-    }, []);
-    // คำนวณวิดีโอที่แสดงในหน้าปัจจุบัน
-    const indexOfLastVideo = currentPage * videosPerPage;
-    const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
-    const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
-    // ฟังก์ชันเปลี่ยนหน้า
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+        const fetchVideoData = async () => {
+            try {
+                const response = await fetch(`https://api.example.com/videos/${videoId}`);
+                const data = await response.json();
+                setVideo(data);
+            } catch (error) {
+                console.error("Error fetching video data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchVideoData();
+    }, [videoId]);
+
+    if (loading) return <div>Loading...</div>; // แสดงสถานะโหลด
+    if (!video) return <div>Video not found</div>; // แสดงข้อความถ้าไม่พบวิดีโอ
+
     return (
-        <div>
-            {/* แสดงวิดีโอ */}
-            {currentVideos.map((video) => (
-                <div key={video.id}>
-                    <h2>{video.snippet.title}</h2>
+        <div className="p-4">
+            <h1 className="text-2xl font-bold mb-4">{video.snippet.title}</h1>
+            <div className="flex flex-col md:flex-row gap-8">
+                {/* ส่วนแสดงวิดีโอ */}
+                <div className="flex-1">
                     <iframe
                         width="100%"
-                        height="300"
-                        src={`https://www.youtube.com/watch?v/${video.id}`} // แก้ไข URL ให้ถูกต้อง
+                        height="500"
+                        src={`https://www.youtube.com/embed/${videoId}`}
                         title="YouTube video player"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     />
                 </div>
-            ))}
-            {/* Pagination */}
-            <div>
-                {Array.from({ length: Math.ceil(videos.length / videosPerPage) }, (_, i) => (
-                    <button key={i + 1} onClick={() => paginate(i + 1)}>
-                        {i + 1}
-                    </button>
-                ))}
+
+                {/* ส่วนข้อมูลวิดีโอ */}
+                <div className="flex-1">
+                    <p className="text-gray-700">{video.snippet.description}</p>
+                    <p className="mt-4 text-sm text-gray-500">
+                        Published on: {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                    </p>
+                </div>
             </div>
         </div>
     );
 };
-export default HomeScreen;
+
+export default WatchPage;
