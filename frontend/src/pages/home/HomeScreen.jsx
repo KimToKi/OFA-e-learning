@@ -3,24 +3,6 @@ import Navbar from "../../components/Navbar";
 import { Info, Play } from "lucide-react";
 import { useState, useEffect } from "react";
 
-const [currentPage, setCurrentPage] = useState(1);
-const videosPerPage = 6;
-
-const indexOfLastVideo = currentPage * videosPerPage;
-const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
-const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
-const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-<iframe
-  width="100%"
-  height="500"
-  src={`https://www.youtube.com/embed/${videoId}`}
-  title="YouTube video player"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-/>
-
-
 const videos = [
     {
         id: "wdsc_QfFL2E",
