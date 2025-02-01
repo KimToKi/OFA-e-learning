@@ -15,4 +15,8 @@ router.get("/:id/details", getMovieDetails);
 router.get("/:id/similar", getSimilarMovies);
 router.get("/:category", getMoviesByCategory);
 
+<<<<<<< HEAD
 export default router;
+=======
+export default router;
+>>>>>>> d9f979e (อัปเดตไฟล์ movie.route.js)
