@@ -11,7 +11,7 @@ import { Loader } from "lucide-react";
 import SearchPage from "./pages/SearchPage";
 import SearchHistoryPage from "./pages/SearchHistoryPage";
 import NotFoundPage from "./pages/404";
-import { PrivateRoute, PublicRoute } from "./RouteGuards";
+import { PrivateRoute, PublicRoute } from ".src/RouteGuards";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
