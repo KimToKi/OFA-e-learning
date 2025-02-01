@@ -11,51 +11,41 @@ import { Loader } from "lucide-react";
 import SearchPage from "./pages/SearchPage";
 import SearchHistoryPage from "./pages/SearchHistoryPage";
 import NotFoundPage from "./pages/404";
+import { PrivateRoute, PublicRoute } from "./RouteGuards";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const { user, isCheckingAuth, authCheck } = useAuthStore();
 
-  // ตรวจสอบการเข้าสู่ระบบเมื่อแอปพลิเคชันโหลด
   useEffect(() => {
     authCheck();
-  }, [authCheck]);
+  }, []);
 
-  // แสดง loading state ขณะตรวจสอบการเข้าสู่ระบบ
   if (isCheckingAuth) {
     return (
       <div className="h-screen">
         <div className="flex justify-center items-center bg-black h-full">
-          <Loader className="animate-spin text-red-600 size-10" />
+          <Loader className="animate-spin text-red-600" size={40} />
         </div>
       </div>
     );
   }
 
   return (
-    <>
+    <ErrorBoundary>
       <Routes>
-        {/* เส้นทางหลัก */}
         <Route path="/" element={<HomePage />} />
-
-        {/* เส้นทางสำหรับผู้ใช้ที่ไม่ได้เข้าสู่ระบบ */}
-        <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/" />} />
-        <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to="/" />} />
-
-        {/* เส้นทางสำหรับผู้ใช้ที่เข้าสู่ระบบแล้ว */}
-        <Route path="/watch/:id" element={user ? <WatchPage /> : <Navigate to="/login" />} />
-        <Route path="/search" element={user ? <SearchPage /> : <Navigate to="/login" />} />
-        <Route path="/history" element={user ? <SearchHistoryPage /> : <Navigate to="/login" />} />
-
-        {/* เส้นทางสำหรับหน้าไม่พบ (404) */}
+        <Route path="/login" element={<PublicRoute user={user}><LoginPage /></PublicRoute>} />
+        <Route path="/signup" element={<PublicRoute user={user}><SignUpPage /></PublicRoute>} />
+        <Route path="/watch/:id" element={<PrivateRoute user={user}><WatchPage /></PrivateRoute>} />
+        <Route path="/search" element={<PrivateRoute user={user}><SearchPage /></PrivateRoute>} />
+        <Route path="/history" element={<PrivateRoute user={user}><SearchHistoryPage /></PrivateRoute>} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
 
-      {/* แสดง Footer ในทุกหน้า */}
       <Footer />
-
-      {/* แสดง Toaster สำหรับข้อความแจ้งเตือน */}
       <Toaster />
-    </>
+    </ErrorBoundary>
   );
 }
 
