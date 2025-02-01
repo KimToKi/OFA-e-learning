@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { Info, Play } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react"; 
 
 const videos = [
     {
@@ -149,51 +149,99 @@ const videos = [
     },
 ];
 
-const getRandomVideo = (videos) => {
-    const randomIndex = Math.floor(Math.random() * videos.length);
-    return videos[randomIndex];
-};
+const HomeScreen = () => {
+    const [trendingVideo, setTrendingVideo] = useState(videos[0]); // เริ่มต้นด้วยวิดีโอแรก
+    const [imgLoading, setImgLoading] = useState(true);
 
-const VideoModal = () => {
-    const [randomVideo, setRandomVideo] = useState(null);
-    const [isOpen, setIsOpen] = useState(true);
-
+    // ใช้ useEffect เพื่อสุ่มเลือกวิดีโอเมื่อคอมโพเนนต์โหลด
     useEffect(() => {
-        setRandomVideo(getRandomVideo(videos)); // สุ่มเลือกวิดีโอ
-    }, []);
-
-    const closeModal = () => {
-        setIsOpen(false);
-    };
+        const randomIndex = Math.floor(Math.random() * videos.length);
+        setTrendingVideo(videos[randomIndex]);
+    }, []); // ใช้ dependency array ว่างเพื่อให้ทำงานเพียงครั้งเดียวเมื่อโหลด
 
     return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={closeModal}
-            contentLabel="Random Video Modal"
-            className="modal"
-            overlayClassName="overlay"
-        >
-            {randomVideo && (
-                <div className="p-4">
-                    <h2 className="text-2xl font-bold mb-4">{randomVideo.snippet.title}</h2>
-                    <ReactPlayer
-                        controls={true}
-                        width={"100%"}
-                        height={"50vh"}
-                        url={`https://www.youtube.com/watch?v=${randomVideo.id}`}
+        <>
+            <div className="relative h-screen text-white">
+                <Navbar />
+
+                {/* COOL OPTIMIZATION HACK FOR IMAGES */}
+                {imgLoading && (
+                    <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center shimmer -z-10" />
+                )}
+
+                <img
+                    src={trendingVideo.snippet.thumbnails.high.url}
+                    alt="Hero img"
+                    className="absolute top-0 left-0 w-full h-full object-cover -z-50"
+                    onLoad={() => {
+                        setImgLoading(false);
+                    }}
+                />
+
+                <div className="absolute top-0 left-0 w-full h-full bg-black/50 -z-50" aria-hidden="true" />
+
+                <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center px-8 md:px-16 lg:px-32">
+                    <div
+                        className="bg-gradient-to-b from-black via-transparent to-transparent 
+                    absolute w-full h-full top-0 left-0 -z-10"
                     />
-                    <p className="mt-4 text-lg">{randomVideo.snippet.description}</p>
-                    <button
-                        onClick={closeModal}
-                        className="bg-red-600 text-white py-2 px-4 rounded mt-4"
-                    >
-                        ปิด
-                    </button>
+
+                    <div className="max-w-2xl">
+                        <h1 className="mt-4 text-6xl font-extrabold text-balance">{trendingVideo.snippet.title}</h1>
+                        <p className="mt-2 text-lg">
+                            {new Date(trendingVideo.snippet.publishedAt).toLocaleDateString()}
+                        </p>
+
+                        <p className="mt-4 text-lg">
+                            {trendingVideo.snippet.description.length > 200
+                                ? trendingVideo.snippet.description.slice(0, 200) + "..."
+                                : trendingVideo.snippet.description}
+                        </p>
+                    </div>
+
+                    <div className="flex mt-8">
+                        <Link
+                            to={`/watch/${trendingVideo.id}`}
+                            className="bg-white hover:bg-white/80 text-black font-bold py-2 px-4 rounded mr-4 flex items-center"
+                        >
+                            <Play className="size-6 mr-2 fill-black" />
+                            Play
+                        </Link>
+
+                        <Link
+                            to={`/watch/${trendingVideo.id}`}
+                            className="bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded flex items-center"
+                        >
+                            <Info className="size-6 mr-2" />
+                            More Info
+                        </Link>
+                    </div>
                 </div>
-            )}
-        </Modal>
+            </div>
+
+            <div className="flex flex-col gap-10 bg-black py-10">
+                {/* แสดงวิดีโออื่นๆ */}
+                {videos.map((video) => (
+                    <div key={video.id} className="max-w-2xl mx-auto">
+                        <h2 className="text-2xl font-bold">{video.snippet.title}</h2>
+                        <img
+                            src={video.snippet.thumbnails.high.url}
+                            alt={video.snippet.title}
+                            className="w-full h-auto rounded-md"
+                        />
+                        <p className="mt-2 text-lg">{video.snippet.description}</p>
+                        <Link
+                            to={`/watch/${video.id}`}
+                            className="bg-white hover:bg-white/80 text-black font-bold py-2 px-4 rounded mt-4 inline-block"
+                        >
+                            <Play className="size-6 mr-2 fill-black" />
+                            Play
+                        </Link>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 };
 
-export default VideoModal;
+export default HomeScreen;
