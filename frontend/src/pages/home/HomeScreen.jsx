@@ -1,33 +1,33 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { Info, Play } from "lucide-react";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 
 const videos = [
     {
-        id: "wdsc_QfFL2E", // videoId จากลิงก์ YouTube
+        id: "wdsc_QfFL2E",
         snippet: {
             title: "National Convention 2023",
             description: "BoostUp The Power คุณเชวง คุณชยางกูร - คุณกัญญ์นลิน ปิยนันทวารินทร์ นักธุรกิจแอมเวย์ระดับมงกุฎทูตสองผู้สถาปนา แนวคิดสู่ความสำเร็จ อย่าถามตัวเองว่า ถ้าล้มเหลวล่ะ แต่ให้ถามว่า 'ถ้าสำเร็จล่ะ'",
             thumbnails: {
                 high: {
-                    url: "https://i.ytimg.com/vi/wdsc_QfFL2E/hqdefault.jpg", // ภาพ thumbnail จาก videoId
+                    url: "https://i.ytimg.com/vi/wdsc_QfFL2E/hqdefault.jpg",
                 },
             },
-            publishedAt: "2023-06-23T00:00:00Z", // วันที่เผยแพร่ (กำหนดเอง)
+            publishedAt: "2023-06-23T00:00:00Z",
         },
     },
     {
-        id: "Ao0jHRFS-Is", // videoId จากลิงก์ YouTube
+        id: "Ao0jHRFS-Is",
         snippet: {
             title: "Future Leader Club #1",
             description: "“การตัดสินใจ และการตั้งเป้าหมาย” กิจกรรม BATCH 1 วันที่ 24 เมษายน 2562 บรรยายโดย คุณเชวง คุณชยางกูร - คุณกัญญ์นลิน ปิยนันทวารินทร์  นักธุรกิจแอมเวย์ระดับมงกุฎทูต",
             thumbnails: {
                 high: {
-                    url: "https://i.ytimg.com/vi/Ao0jHRFS-Is/hqdefault.jpg", // ภาพ thumbnail จาก videoId
+                    url: "https://i.ytimg.com/vi/Ao0jHRFS-Is/hqdefault.jpg",
                 },
             },
-            publishedAt: "2019-06-13T00:00:00Z", // วันที่เผยแพร่ (กำหนดเอง)
+            publishedAt: "2019-06-13T00:00:00Z",
         },
     },
     {
@@ -150,44 +150,43 @@ const videos = [
 ];
 
 const HomeScreen = () => {
-    const [trendingVideo, setTrendingVideo] = useState(videos[0]); // เริ่มต้นด้วยวิดีโอแรก
+    const [trendingVideo, setTrendingVideo] = useState(videos[0]);
     const [imgLoading, setImgLoading] = useState(true);
 
-    // ใช้ useEffect เพื่อสุ่มเลือกวิดีโอเมื่อคอมโพเนนต์โหลด
     useEffect(() => {
         const randomIndex = Math.floor(Math.random() * videos.length);
         setTrendingVideo(videos[randomIndex]);
-    }, []); // ใช้ dependency array ว่างเพื่อให้ทำงานเพียงครั้งเดียวเมื่อโหลด
+    }, []);
 
     return (
         <>
             <div className="relative h-screen text-white">
                 <Navbar />
 
-                {/* COOL OPTIMIZATION HACK FOR IMAGES */}
+                {/* Loading state */}
                 {imgLoading && (
                     <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center shimmer -z-10" />
                 )}
 
+                {/* Hero image */}
                 <img
                     src={trendingVideo.snippet.thumbnails.high.url}
                     alt="Hero img"
                     className="absolute top-0 left-0 w-full h-full object-cover -z-50"
-                    onLoad={() => {
-                        setImgLoading(false);
-                    }}
+                    onLoad={() => setImgLoading(false)}
                 />
 
+                {/* Overlay */}
                 <div className="absolute top-0 left-0 w-full h-full bg-black/50 -z-50" aria-hidden="true" />
 
+                {/* Content */}
                 <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center px-8 md:px-16 lg:px-32">
-                    <div
-                        className="bg-gradient-to-b from-black via-transparent to-transparent 
-                    absolute w-full h-full top-0 left-0 -z-10"
-                    />
+                    <div className="bg-gradient-to-b from-black via-transparent to-transparent absolute w-full h-full top-0 left-0 -z-10" />
 
                     <div className="max-w-2xl">
-                        <h1 className="mt-4 text-6xl font-extrabold text-balance">{trendingVideo.snippet.title}</h1>
+                        <h1 className="mt-4 text-6xl font-extrabold text-balance">
+                            {trendingVideo.snippet.title}
+                        </h1>
                         <p className="mt-2 text-lg">
                             {new Date(trendingVideo.snippet.publishedAt).toLocaleDateString()}
                         </p>
@@ -214,7 +213,12 @@ const HomeScreen = () => {
                         >
                             <Info className="size-6 mr-2" />
                             More Info
-                            {/* ส่วน "Trending Links" */}
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* Trending Links Section */}
             <div className="bg-black py-10 px-8 md:px-16 lg:px-32">
                 <h2 className="text-3xl font-bold mb-6">Trending Links</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -237,8 +241,10 @@ const HomeScreen = () => {
                                     className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block"
                                 >
                                     Watch Now
-                        </Link>
-                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </>
