@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { Info, Play } from "lucide-react";
-import useGetTrendingContent from "../../hooks/useGetTrendingContent";
 import { ORIGINAL_IMG_BASE_URL } from "../..untils/constants";
 import { useState, useEffect } from "react"; 
 
@@ -191,7 +190,7 @@ const HomeScreen = () => {
 
                     <div className="max-w-2xl">
                         <h1 className="mt-4 text-6xl font-extrabold text-balance">
-                            {trendingContent?.title || trendingContent?.name}
+                            {trendingVideo.title || trendingVideo.name}
                         </h1>
                         <p className="mt-2 text-lg">
                             {new Date(trendingVideo.snippet.publishedAt).toLocaleDateString()}
