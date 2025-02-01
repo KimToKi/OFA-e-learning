@@ -30,7 +30,7 @@ const HomeScreen = () => {
                     <iframe
                         width="100%"
                         height="300"
-                        src={`https://www.youtube.com/embed/${video.id}`} // แก้ไข URL ให้ถูกต้อง
+                        src={`https://www.youtube.com/watch?v/${video.id}`} // แก้ไข URL ให้ถูกต้อง
                         title="YouTube video player"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
