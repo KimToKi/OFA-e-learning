@@ -4,61 +4,59 @@ import { LogOut, Menu, Search } from "lucide-react";
 import { useAuthStore } from "../store/authUser";
 import { useContentStore } from "../store/content";
 
-const Navbar = () => {
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const { user, logout } = useAuthStore();
+interface linkProps {
+  name: string;
+  href: string;
+}
 
-	const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+const links: linkProps[] = [
+  { name: "Home", href: "/home" },
+  { name: "Tv Shows", href: "/home/shows" },
+  { name: "Movies", href: "/home/movies" },
+  { name: "Recently Added", href: "/home/recently" },
+  { name: "My List", href: "/home/user/list" },
+];
 
-	const { setContentType } = useContentStore();
+export default function Navbar() {
+  const pathName = usePathname();
+  return (
+    <div className="w-full max-w-7xl mx-auto items-center justify-between px-5 sm:px-6 py-5 lg:px-8 flex">
+      <div className="flex items-center">
+        <Link href="/home" className="w-32">
+          <Image src={Logo} alt="Netflix logo" priority />
+        </Link>
+        <ul className="lg:flex gap-x-4 ml-14 hidden">
+          {links.map((link, idx) => (
+            <div key={idx}>
+              {pathName === link.href ? (
+                <li>
+                  <Link
+                    href={link.href}
+                    className="text-white font-semibold underline text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ) : (
+                <li>
+                  <Link
+                    className="text-gray-300 font-normal text-sm"
+                    href={link.href}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              )}
+            </div>
+          ))}
+        </ul>
+      </div>
 
-	return (
-		<header className='max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20'>
-			<div className='flex items-center gap-10 z-50'>
-				<Link to='/'>
-					<img src='/netflix-logo.png' alt='Netflix Logo' className='w-32 sm:w-40' />
-				</Link>
-
-				{/* desktop navbar items */}
-				<div className='hidden sm:flex gap-2 items-center'>
-					<Link to='/' className='hover:underline' onClick={() => setContentType("links")}>
-						Links
-					</Link>
-					<Link to='/' className='hover:underline' onClick={() => setContentType("packs")}>
-						Packs
-					</Link>
-					<Link to='/history' className='hover:underline'>
-						Search History
-					</Link>
-				</div>
-			</div>
-
-			<div className='flex gap-2 items-center z-50'>
-				<Link to={"/search"}>
-					<Search className='size-6 cursor-pointer' />
-				</Link>
-				<img src={user.image} alt='Avatar' className='h-8 rounded cursor-pointer' />
-				<LogOut className='size-6 cursor-pointer' onClick={logout} />
-				<div className='sm:hidden'>
-					<Menu className='size-6 cursor-pointer' onClick={toggleMobileMenu} />
-				</div>
-			</div>
-
-			{/* mobile navbar items */}
-			{isMobileMenuOpen && (
-				<div className='w-full sm:hidden mt-4 z-50 bg-black border rounded border-gray-800'>
-					<Link to={"/"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
-						Links
-					</Link>
-					<Link to={"/"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
-						Packs
-					</Link>
-					<Link to={"/history"} className='block hover:underline p-2' onClick={toggleMobileMenu}>
-						Search History
-					</Link>
-				</div>
-			)}
-		</header>
-	);
-};
-export default Navbar;
+      <div className="flex items-center gap-x-8">
+        <Search className="w-5 h-5 text-gray-300 cursor-pointer" />
+        <Bell className="h-5 w-5 text-gray-300 cursor-pointer" />
+        <UserNav />
+      </div>
+    </div>
+  );
+}
